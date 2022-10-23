@@ -1,0 +1,23 @@
+# fly.toml file generated for rest-nextjs-api-routes on 2022-10-23T14:46:20+07:00
+
+app = "rest-nextjs-api-routes"
+
+[experimental]
+  enable_consul = true
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "443"
+
+[mounts]
+  destination = "/mnt/data"
+  source = "data"
